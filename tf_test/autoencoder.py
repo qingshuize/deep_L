@@ -104,7 +104,7 @@ if __name__ == '__main__':
     autoencode = AdditiveGaussianNoiseAutoencoder(n_input=784,
                                                   n_hidden=20,
                                                   transfer_function=tf.nn.softplus,
-                                                  optimizer=tf.train.AdamOptimizer(learning_rate=0.02),
+                                                  optimizer=tf.train.AdamOptimizer(learning_rate=0.03),
                                                   scale=0.01
                                                   )
 
