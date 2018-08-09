@@ -7,30 +7,30 @@ import random
 
 """
 例子：
-组合优化问题「背包问题」。比如，你准备要去野游1个月，但是你只能背一个限重30公斤的背包。现在你有不同的必需物品，
+组合优化问题「背包问题」。比如，你准备要去野游1个月，但是你只能背一个限重50公斤的背包。现在你有不同的必需物品，
 它们每一个都有自己的「生存点数」（具体在下表中已给出）。
 因此，你的目标是在有限的背包重量下，最大化你的「生存点数」。
 """
-
+MAX_WEIGHT=80
+TEST_TIMES=100
 def solve_package_problem():
-    a=np.array([15,3,2,5,9,20])
-    w=np.array([15,7,10,5,8,17])
+    a=np.array([15,25,35,45,55,70])
+    w=np.array([10,15,20,25,30,35])
     count=0
-    n=100   #运行次数
 
     #初始化变量
     z_max=0
     x_right=[]
     a_right=0
 
-    while count<n:
+    while count<TEST_TIMES:
         num=a.shape[0]
         x=[choice([0,1]) for _ in range(num)]
-        s=a*x
-        z=w*x
+        s=w*x
+        z=a*x
         count+=1
 
-        if np.linalg.norm(s, 1) <= 30:
+        if np.linalg.norm(s, 1) <= MAX_WEIGHT:
             z_value=np.linalg.norm(z,1)
             if z_value>z_max:
                 z_max=z_value
@@ -39,6 +39,7 @@ def solve_package_problem():
 
     print('survival points:'+str(z_max))
     print('choice matrix:'+str(x_right))
+    print(u'最佳个体是：'+str([i for i in range(len(x_right)) if x_right[i]==1]))
     print('total weight:'+str(a_right))
 
 
@@ -115,8 +116,10 @@ def x_pow_2_problem():
     print(r1,r2,r3,r4)
     random_num=[random.random() for _ in range(4)]
     print(random_num)
-if __name__ == '__main__':
-    # solve_package_problem()
-    # solve_tsp_problem()
-    x_pow_2_problem()
 
+
+
+if __name__ == '__main__':
+    solve_package_problem()
+    # solve_tsp_problem()
+    # x_pow_2_problem()
